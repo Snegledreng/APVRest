@@ -5,7 +5,7 @@ namespace APVRest.Service
 {
     public class UserService : IUserService
     {
-        public void CreateUser(Plants creatingUser)
+        public void CreateUser(Plant creatingUser)
         {
             throw new NotImplementedException();
         }
@@ -20,7 +20,7 @@ namespace APVRest.Service
             throw new NotImplementedException();
         }
 
-        public Users GetUserById(int userId)
+        public User GetUserById(int userId)
         {
             throw new NotImplementedException();
         }
@@ -35,7 +35,7 @@ namespace APVRest.Service
             throw new NotImplementedException();
         }
 
-        public void UpdateUser(Users updateUser, int userId)
+        public void UpdateUser(User updateUser, int userId)
         {
             throw new NotImplementedException();
         }

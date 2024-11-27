@@ -5,27 +5,22 @@ namespace APVRest.Service
 {
     public class LogService : ILogService
     {
-        public void CreateLog(Logs creatingLog, int plantId)
+        public void CreateLog(Log log)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteLog(int logsId, int plantId)
+        public void DeleteLog(int plantId, DateTime dateTime)
         {
             throw new NotImplementedException();
         }
 
-        public List<Logs> GetAllLog(int plantId)
+        public List<Log> GetAllLog(int plantId)
         {
             throw new NotImplementedException();
         }
 
-        public Logs GetLogById()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateLog(Plants updateLogs, int logsId)
+        public Log GetLogById(int plantId, DateTime dateTime)
         {
             throw new NotImplementedException();
         }

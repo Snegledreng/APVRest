@@ -5,7 +5,7 @@ namespace APVRest.Service
 {
     public class PlantService : IPlantService
     {
-        public void CreatePlant(Plants creatingPlant)
+        public void CreatePlant(Plant plant)
         {
             throw new NotImplementedException();
         }
@@ -15,17 +15,17 @@ namespace APVRest.Service
             throw new NotImplementedException();
         }
 
-        public List<Plants> GetAllPlants(int userId)
+        public List<Plant> GetAllPlants(int userId)
         {
             throw new NotImplementedException();
         }
 
-        public Plants GetPlantById()
+        public Plant GetPlantById(int plantId)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdatePlant(Plants updatePlant, int plantId)
+        public void UpdatePlant(Plant updatePlant, int plantId)
         {
             throw new NotImplementedException();
         }

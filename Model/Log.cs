@@ -1,6 +1,6 @@
 ﻿namespace APVRest.Model
 {
-    public class Logs
+    public class Log
     {
         public int LogID { get; set; }
         public int PlantID { get; set; }
@@ -8,7 +8,7 @@
         public int Humidity { get; set; }
         public int RemainingWater { get; set; }
 
-        public Logs(int LogID, int PlantID, DateTime Timestamp, int Humidity, int RemainingWater)
+        public Log(int LogID, int PlantID, DateTime Timestamp, int Humidity, int RemainingWater)
         {
             this.LogID = LogID;
             this.PlantID = PlantID;

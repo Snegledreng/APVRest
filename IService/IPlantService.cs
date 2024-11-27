@@ -5,15 +5,15 @@ namespace APVRest.IService
 {
     public interface IPlantService
     {
-        public void CreatePlant(Plants creatingPlant);
+        public void CreatePlant(Plant creatingPlant);
 
         public void DeletePlant(int plantId);
 
-        public void UpdatePlant(Plants updatePlant, int plantId);
+        public void UpdatePlant(Plant updatePlant, int plantId);
 
-        public List<Plants> GetAllPlants(int userId);
+        public List<Plant> GetAllPlants(int userId);
 
-        public Plants GetPlantById();
+        public Plant GetPlantById(int plantId);
 
     }
 }
