@@ -8,5 +8,13 @@
         public int Humidity { get; set; }
         public int RemainingWater { get; set; }
 
+        public Logs(int LogID, int PlantID, DateTime Timestamp, int Humidity, int RemainingWater)
+        {
+            this.LogID = LogID;
+            this.PlantID = PlantID;
+            this.Timestamp = Timestamp;
+            this.Humidity = Humidity;
+            this.RemainingWater = RemainingWater;
+        }
     }
 }
