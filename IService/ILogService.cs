@@ -4,11 +4,11 @@ namespace APVRest.IService
 {
     public interface ILogService
     {
-        public void CreateLog(Logs CreatingLog, int PlantId);
+        public void CreateLog(Logs creatingLog, int plantId);
 
-        public void DeleteLog(int logsId, int PlantId);
+        public void DeleteLog(int logsId, int plantId);
 
-        public void UpdateLog(Plants UpdateLogs, int LogsId);
+        public void UpdateLog(Plants updateLogs, int logsId);
 
         public List<Logs> GetAllLog(int plantId);
 

@@ -5,12 +5,12 @@ namespace APVRest.Service
 {
     public class UserService : IUserService
     {
-        public void CreateUser(Plants CreatingUser)
+        public void CreateUser(Plants creatingUser)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteUser(int UserId)
+        public void DeleteUser(int userId)
         {
             throw new NotImplementedException();
         }
@@ -20,12 +20,12 @@ namespace APVRest.Service
             throw new NotImplementedException();
         }
 
-        public Users GetUserById(int UserId)
+        public Users GetUserById(int userId)
         {
             throw new NotImplementedException();
         }
 
-        public void LogIn(string UName, string Password)
+        public void LogIn(string uName, string password)
         {
             throw new NotImplementedException();
         }
@@ -35,7 +35,7 @@ namespace APVRest.Service
             throw new NotImplementedException();
         }
 
-        public void UpdateUser(Users UpdateUser, int UserId)
+        public void UpdateUser(Users updateUser, int userId)
         {
             throw new NotImplementedException();
         }
