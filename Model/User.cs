@@ -8,9 +8,9 @@
         public string Password { get; set; }
         public string CityOrPostNr { get; set; }
 
-        public User(int UserId, string UserName, string Email, string Password, string CityOrPostNr)
+        public User(int UserID, string UserName, string Email, string Password, string CityOrPostNr)
         {
-            this.UserID = UserId;
+            this.UserID = UserID;
             this.UserName = UserName;
             this.Email = Email;
             this.Password = Password;
