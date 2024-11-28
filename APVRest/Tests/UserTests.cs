@@ -33,7 +33,7 @@ namespace APVRest.Tests
         public void GetUserByIdTestInexisting()
         {
             Setup();
-            Assert.IsNotNull(uService.GetUserById(1));
+            Assert.IsNull(uService.GetUserById(1));
         }
 
         [TestMethod()]
@@ -66,7 +66,8 @@ namespace APVRest.Tests
         [TestMethod()]
         public void DeleteUserTestInexistingUser()
         {
-            Setup();            
+            Setup();
+            
             Assert.IsFalse(uService.DeleteUser(1));
         }
 
