@@ -5,7 +5,7 @@ namespace APVRest.Service
 {
     public class UserService : IUserService
     {
-        public void CreateUser(Plant creatingUser)
+        public void CreateUser(User creatingUser)
         {
             throw new NotImplementedException();
         }

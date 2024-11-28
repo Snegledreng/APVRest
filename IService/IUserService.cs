@@ -5,7 +5,7 @@ namespace APVRest.IService
     public interface IUserService
     {
 
-        public void CreateUser(Plant creatingUser);
+        public void CreateUser(User creatingUser);
 
         public void DeleteUser(int userId);
 
