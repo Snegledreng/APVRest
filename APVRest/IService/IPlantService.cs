@@ -7,7 +7,7 @@ namespace APVRest.IService
     {
         public void CreatePlant(Plant creatingPlant);
 
-        public void DeletePlant(int plantId);
+        public bool DeletePlant(int plantId);
 
         public void UpdatePlant(Plant updatePlant, int plantId);
 

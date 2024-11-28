@@ -63,14 +63,12 @@ namespace APVRest.Tests
             Assert.IsNull(uService.GetUserById(1));
         }
 
-        //[TestMethod()]
-        //[ExpectedException(typeof(ArgumentNullException))]
-        //public void DeleteUserTestInexistingUser()
-        //{
-        //    Setup();
-        //    uService.DeleteUser(1);
-        //    Assert.Fail();
-        //}
+        [TestMethod()]
+        public void DeleteUserTestInexistingUser()
+        {
+            Setup();            
+            Assert.IsFalse(uService.DeleteUser(1));
+        }
 
         [TestMethod()]
         public void UpdateUserTestExistingUser()

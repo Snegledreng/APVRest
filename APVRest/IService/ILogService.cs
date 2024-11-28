@@ -6,7 +6,7 @@ namespace APVRest.IService
     {
         public void CreateLog(Log log);
 
-        public void DeleteLog(int plantId, DateTime dateTime);
+        public bool DeleteLog(int plantId, DateTime dateTime);
 
         public List<Log> GetAllLog(int plantId);
 

@@ -7,7 +7,7 @@ namespace APVRest.IService
 
         public void CreateUser(User creatingUser);
 
-        public void DeleteUser(int userId);
+        public bool DeleteUser(int userId);
 
         public void UpdateUser(User updateUser, int userId);
 

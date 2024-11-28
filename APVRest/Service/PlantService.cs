@@ -10,7 +10,7 @@ namespace APVRest.Service
             throw new NotImplementedException();
         }
 
-        public void DeletePlant(int plantId)
+        public bool DeletePlant(int plantId)
         {
             throw new NotImplementedException();
         }

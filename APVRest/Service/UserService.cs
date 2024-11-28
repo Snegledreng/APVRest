@@ -10,7 +10,7 @@ namespace APVRest.Service
             throw new NotImplementedException();
         }
 
-        public void DeleteUser(int userId)
+        public bool DeleteUser(int userId)
         {
             throw new NotImplementedException();
         }
