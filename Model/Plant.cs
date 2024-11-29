@@ -2,24 +2,55 @@
 {
     public class Plant
     {
-        public int PlantID { get; set; }
-        public string Name { get; set; }
-        public int DesiredHumidity { get; set; }
-        public int WaterTankVolume { get; set; }
-        public string IPAddress { get; set; }
-        public int UserId { get; set; }
-        public string PicturUrl { get; set; }
-        public List<Log> LogListe { get; set; }
+        private string _name;
+        private int _desiredHumidity;
+        private int _waterTankVolume;
+        private string _ipAddress;
+        private string _pictureUrl;
 
-        public Plant(int PlantID, string Name, int DesiredHumidity, int WaterTankVolume, string IPAddress, int UserId, string PicturUrl)
+        public int UserId;
+        public List<Log> LogListe;
+        public int PlantID;
+
+        public string Name
         {
-            this.PlantID = PlantID;
-            this.Name = Name;
-            this.DesiredHumidity = DesiredHumidity;
-            this.WaterTankVolume = WaterTankVolume;
-            this.IPAddress = IPAddress;
-            this.UserId = UserId;
-            this.PicturUrl = PicturUrl;
+            get => _name;
+            set => _name = value;
+        }
+
+        public int DesiredHumidity
+        {
+            get => _desiredHumidity;
+            set => _desiredHumidity = value;
+        }
+
+        public int WaterTankVolume
+        {
+            get => _waterTankVolume;
+            set => _waterTankVolume = value;
+        }
+
+        public string IPAddress
+        {
+            get => _ipAddress;
+            set => _ipAddress = value;
+        }
+
+        public string PictureUrl
+        {
+            get => _pictureUrl;
+            set => _pictureUrl = value;
+        }
+
+        public Plant(int plantId, string name, int desiredHumidity, int waterTankVolume, string ipAddress, int userId, string pictureUrl)
+        {
+            this.PlantID = plantId;
+            this.Name = name;
+            this.DesiredHumidity = desiredHumidity;
+            this.WaterTankVolume = waterTankVolume;
+            this.IPAddress = ipAddress;
+            this.UserId = userId;
+            this.PictureUrl = pictureUrl;
         }
     }
 }
