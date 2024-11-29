@@ -15,6 +15,7 @@ namespace APVRest.Service
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(SelectByIdSQL, conn);
+                cmd.Parameters.AddWithValue("@UID", userId);
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
