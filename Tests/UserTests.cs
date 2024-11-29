@@ -14,9 +14,14 @@ namespace APVRest.Tests
     {
         public UserService uService { get; set; }
 
-        public void Setup()
+        [TestInitialize]
+        public void Start()
         {
             uService = new UserService();
+        }
+
+        public void Setup()
+        {
             Helpers.NukeTable.NukeSpecificTable<User>();
         }
 
@@ -24,8 +29,10 @@ namespace APVRest.Tests
         public void GetUserByIdTestExisting()
         {
             Setup();
-            uService.CreateUser(new User(1, "UName", "Email", "Password", "Roskilde"));
-            Assert.IsNotNull(uService.GetUserById(1));
+
+            uService.CreateUser(new User(1, "UName", "Email@", "Password", "Roskilde"));
+            int id = Helpers.GetFirstobjectIDDB.ID();
+            Assert.IsNotNull(uService.GetUserById(id));
         }
 
 
@@ -40,72 +47,66 @@ namespace APVRest.Tests
         public void CreateUserTestAcceptable()
         {
             Setup();
-            uService.CreateUser(new User(1, "UName", "Email","Password", "Roskilde"));
-            Assert.IsNotNull(uService.GetUserById(1));
+            uService.CreateUser(new User(1, "UName", "Email@","Password", "Roskilde"));
+            int id = Helpers.GetFirstobjectIDDB.ID();
+            Assert.IsNotNull(uService.GetUserById(id));
         }
 
-        //[TestMethod()]
-        //[DataRow()]
-        //[ExpectedException(typeof(ArgumentException))]
-        //public void CreateUserTestUnacceptable(int UID, string UName, string Email, string Password, string City)
-        //{
-        //    Setup();
-        //    uService.CreateUser(new User(UID, UName, Email, Password, City));
-        //    Assert.Fail();
-        //}
+        [TestMethod()]
+        [DataRow("l", "Emai@l", "Password", "Roskilde")]
+        [DataRow("qwertyuqwertyqwertyqwertyu", "Ema@il", "Password", "Roskilde")]
+        [DataRow("qwerty", "Email", "Password", "Roskilde")]
+        [DataRow("qwerty", "Emai @l", "Password", "Roskilde")]
+        [DataRow("qwerty", "Email@@", "l", "Roskilde")]
+        [DataRow("qwerty", "Email@@", "qwertyuqwertyuqwertyqwerty", "Roskilde")]
+        [DataRow("qwerty", "Email@@", "Password", "")]
+
+        [ExpectedException(typeof(ArgumentException))]
+        public void CreateUserTestUnacceptable( string UName, string Email, string Password, string City)
+        {
+            Setup();
+            uService.CreateUser(new User(UName, Email, Password, City));
+            Assert.Fail();
+        }
 
         [TestMethod()]
         public void DeleteUserTestExistingUser()
         {
             Setup();
-            uService.CreateUser(new User(1, "UName", "Email", "Password", "Roskilde"));
-            uService.DeleteUser(1);
-            Assert.IsNull(uService.GetUserById(1));
+            uService.CreateUser(new User(1, "UName", "Email@", "Password", "Roskilde"));
+            int id = Helpers.GetFirstobjectIDDB.ID();
+            uService.DeleteUser(id);
+            Assert.IsNull(uService.GetUserById(id));
         }
 
-        //[TestMethod()]
-        //[ExpectedException(typeof(ArgumentNullException))]
-        //public void DeleteUserTestInexistingUser()
-        //{
-        //    Setup();
-        //    uService.DeleteUser(1);
-        //    Assert.Fail();
-        //}
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void DeleteUserTestInexistingUser()
+        {
+            Setup();
+            uService.DeleteUser(1);
+            Assert.Fail();
+        }
 
         [TestMethod()]
         public void UpdateUserTestExistingUser()
         {
             Setup();
-            uService.CreateUser(new User(1, "UName", "Email", "Password", "Roskilde"));
-            uService.UpdateUser(new User(2, "UName", "Email", "Password", "Roskilde"), 1);
-            Assert.IsNotNull(uService.GetUserById(2));
+            uService.CreateUser(new User(1, "UName", "Email@", "Password", "Roskilde"));
+            int id = Helpers.GetFirstobjectIDDB.ID();
+            uService.UpdateUser(new User(2, "UName", "Email@", "Password", "Roskilde"), id);
+            id = Helpers.GetFirstobjectIDDB.ID();
+            Assert.IsNotNull(uService.GetUserById(id));
         }
 
         public void UpdateUserTestInexistingUser()
         {
             Setup();
-            uService.UpdateUser(new User(2, "UName", "Email", "Password", "Roskilde"), 12);
+            uService.UpdateUser(new User(2, "UName", "Email@", "Password", "Roskilde"), 12);
             Assert.IsNull(uService.GetUserById(2));
         }
 
-        [TestMethod()]
-        public void GetHttpTest()
-        {
-            throw new NotImplementedException();
-        }
 
-
-        [TestMethod()]
-        public void LogInTest()
-        {
-            throw new NotImplementedException();
-        }
-
-        [TestMethod()]
-        public void LogOutTest()
-        {
-            throw new NotImplementedException();
-        }
 
     }
 }

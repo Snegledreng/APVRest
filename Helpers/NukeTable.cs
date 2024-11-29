@@ -9,9 +9,9 @@ namespace APVRest.Helpers
 
         public static void NukeSpecificTable<T>() where T : class
         {
-            string NukeSQL = "DELETE FROM";
+            string NukeSQL = "DELETE FROM ";
             if (typeof(T) == typeof(User))
-                NukeSQL += "User";
+                NukeSQL += "DBO.[USER]";
             else if (typeof(T) == typeof(Plant))
                 NukeSQL += "Plant";
             else
