@@ -27,12 +27,12 @@ namespace APVRest.Service
 
         public void CreateUser(User creatingUser)
         {
-            string CreateSQL = "INSERT INTO DBO.[USER](Username,Email, Password, City) VALUES (@Username,@Email, @Password, @City);";
+            string CreateSQL = "INSERT INTO DBO.[USER](Username, Email, Password, City) VALUES (@Username, @Email, @Password, @City);";
             using (SqlConnection conn = new SqlConnection(Service.Secret.TestConnectionString))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(CreateSQL, conn);
-                cmd.Parameters.AddWithValue("@Username", creatingUser.UserID);
+                cmd.Parameters.AddWithValue("@Username", creatingUser.UserName);
                 cmd.Parameters.AddWithValue("@Email", creatingUser.Email);
                 cmd.Parameters.AddWithValue("@Password", creatingUser.Password);
                 cmd.Parameters.AddWithValue("@City", creatingUser.City);
