@@ -7,33 +7,64 @@
         private int _waterTankVolume;
         private string _ipAddress;
         private string _pictureUrl;
+        private List<Log> _logListe;
 
         public int UserId;
-        public List<Log> LogListe;
         public int PlantID;
+
+        
+
+        public List<Log> Logliste
+        {
+            get => _logListe;
+            set => _logListe = value;
+        }
 
         public string Name
         {
             get => _name;
-            set => _name = value;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value) || value.Length < 2 || value.Length > 19)
+                    throw new ArgumentException("Name must be between 2 and 19 characters long (2 and 19 included)");
+                _name = value;
+            }
         }
 
         public int DesiredHumidity
         {
             get => _desiredHumidity;
-            set => _desiredHumidity = value;
+            set
+            {
+                if (value < 1 || value > 99)
+                    throw new ArgumentException("Desiredhumidity must be between 1 and 99");
+                _desiredHumidity = value;
+            }
         }
 
         public int WaterTankVolume
         {
             get => _waterTankVolume;
-            set => _waterTankVolume = value;
+            set
+            {
+                if (value < 10)
+                    throw new ArgumentException("Watertankvolume must be above 10 Ml");
+                _waterTankVolume = value;
+
+            }
         }
 
         public string IPAddress
         {
             get => _ipAddress;
-            set => _ipAddress = value;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value)) 
+                    throw new ArgumentException("Ipaddress is  incorrect");
+                
+                _ipAddress = value;
+
+            }
         }
 
         public string PictureUrl
@@ -42,15 +73,27 @@
             set => _pictureUrl = value;
         }
 
-        public Plant(int plantId, string name, int desiredHumidity, int waterTankVolume, string ipAddress, int userId, string pictureUrl)
+        public Plant(string name, int desiredHumidity, int waterTankVolume, string ipAddress, string pictureUrl, List<Log> logListe, int userId, int plantId)
         {
-            this.PlantID = plantId;
-            this.Name = name;
-            this.DesiredHumidity = desiredHumidity;
-            this.WaterTankVolume = waterTankVolume;
-            this.IPAddress = ipAddress;
-            this.UserId = userId;
-            this.PictureUrl = pictureUrl;
+            _name = name;
+            _desiredHumidity = desiredHumidity;
+            _waterTankVolume = waterTankVolume;
+            _ipAddress = ipAddress;
+            _pictureUrl = pictureUrl;
+            _logListe = logListe;
+            UserId = userId;
+            PlantID = plantId;
+        }
+
+        public Plant(string name, int desiredHumidity, int waterTankVolume, string ipAddress, string pictureUrl, int userId)
+        {
+            _name = name;
+            _desiredHumidity = desiredHumidity;
+            _waterTankVolume = waterTankVolume;
+            _ipAddress = ipAddress;
+            _pictureUrl = pictureUrl;
+            _logListe = new List<Log>();
+            UserId = userId;
         }
     }
 }
