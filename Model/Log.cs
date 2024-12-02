@@ -2,19 +2,44 @@
 {
     public class Log
     {
-        public int LogID { get; set; }
-        public int PlantID { get; set; }
-        public DateTime Timestamp { get; set; }
-        public int Humidity { get; set; }
-        public int RemainingWater { get; set; }
+        private int _plantid;
+        private DateTime _timestamp;
+        private int _humidity;
+        private int _remainingWater;
 
-        public Log(int LogID, int PlantID, DateTime Timestamp, int Humidity, int RemainingWater)
+
+        public int Plantid
         {
-            this.LogID = LogID;
-            this.PlantID = PlantID;
-            this.Timestamp = Timestamp;
-            this.Humidity = Humidity;
-            this.RemainingWater = RemainingWater;
+            get { return _plantid; }
+            set { _plantid = value; }
+        }
+
+        public DateTime Timestamp
+        {
+            get { return _timestamp; }
+            set { _timestamp = Helpers.DateTimeExpansion.RoundDownToHour(value); }
+        }
+
+        public int Humidity
+        {
+            get { return _humidity; }
+            set { _humidity = value; }
+        }
+
+        public int Remainingwater
+        {
+            get { return _remainingWater; }
+            set { _remainingWater = value; }
+        }
+
+
+
+        public Log(int plantID, DateTime timestamp, int humidity, int remainingWater)
+        {
+            Plantid = plantID;
+            this._timestamp = timestamp;
+            this._humidity = humidity;
+            this._remainingWater = remainingWater;
         }
     }
 }
