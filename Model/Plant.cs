@@ -36,8 +36,8 @@
             get => _desiredHumidity;
             set
             {
-                if (value < 1 || value > 99)
-                    throw new ArgumentException("Desiredhumidity must be between 1 and 99");
+                if (value < 0 || value > 100)
+                    throw new ArgumentException("Desiredhumidity must be between 0 and 100");
                 _desiredHumidity = value;
             }
         }
@@ -75,24 +75,24 @@
 
         public Plant(string name, int desiredHumidity, int waterTankVolume, string ipAddress, string pictureUrl, List<Log> logListe, int userId, int plantId)
         {
-            _name = name;
-            _desiredHumidity = desiredHumidity;
-            _waterTankVolume = waterTankVolume;
-            _ipAddress = ipAddress;
-            _pictureUrl = pictureUrl;
-            _logListe = logListe;
+            Name = name;
+            DesiredHumidity = desiredHumidity;
+            WaterTankVolume = waterTankVolume;
+            IPAddress = ipAddress;
+            PictureUrl = pictureUrl;
+            Logliste = logListe;
             UserId = userId;
             PlantID = plantId;
         }
 
         public Plant(string name, int desiredHumidity, int waterTankVolume, string ipAddress, string pictureUrl, int userId)
         {
-            _name = name;
-            _desiredHumidity = desiredHumidity;
-            _waterTankVolume = waterTankVolume;
-            _ipAddress = ipAddress;
-            _pictureUrl = pictureUrl;
-            _logListe = new List<Log>();
+            Name = name;
+            DesiredHumidity = desiredHumidity;
+            WaterTankVolume = waterTankVolume;
+            IPAddress = ipAddress;
+            PictureUrl = pictureUrl;
+            Logliste = new List<Log>();
             UserId = userId;
         }
     }

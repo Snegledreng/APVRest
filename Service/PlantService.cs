@@ -98,7 +98,7 @@ namespace APVRest.Service
 
         public void UpdatePlant(Plant updatePlant, int plantId)
         {
-            string UpdateSQL = "UPDATE PLANT SET NAME = @Name, DESIREDHUMIDITY = @Desiredhumidity, WATERTANKVOLUME = @Watertankvolume, IPADRESS = @Ipadress, PICTUREURL = @Pictureurl WHERE PLANTID = @PLANTID";
+            string UpdateSQL = "UPDATE PLANT SET NAME = @Name, DESIREDHUMIDITY = @Desiredhumidity, WATERTANKVOLUME = @Watertankvolume, IPADDRESS = @Ipaddress, PICTUREURL = @Pictureurl WHERE PLANTID = @PLANTID";
             using (SqlConnection conn = new SqlConnection(Service.Secret.TestConnectionString))
             {
                 conn.Open();
@@ -106,14 +106,14 @@ namespace APVRest.Service
                 cmd.Parameters.AddWithValue("@Name", updatePlant.Name);
                 cmd.Parameters.AddWithValue("@Desiredhumidity", updatePlant.DesiredHumidity);
                 cmd.Parameters.AddWithValue("@Watertankvolume", updatePlant.WaterTankVolume);
-                cmd.Parameters.AddWithValue("@Ipadress", updatePlant.IPAddress);
+                cmd.Parameters.AddWithValue("@Ipaddress", updatePlant.IPAddress);
                 
                 if (updatePlant.PictureUrl == null)
                     cmd.Parameters.AddWithValue("@Pictureurl", DBNull.Value);
                 
                 else
                     cmd.Parameters.AddWithValue("@Pictureurl", updatePlant.PictureUrl);
-                
+                cmd.Parameters.AddWithValue("@PLANTID", plantId);
                 
                 int RowAffected = cmd.ExecuteNonQuery();
                 if (RowAffected == 0)

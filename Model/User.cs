@@ -44,7 +44,7 @@ namespace APVRest.Model
             set
             {
                 if (value.Length < 8 || value.Length > 18 || string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Password must be between 9 and 17 characters long (9 and 17 included)");
+                    throw new ArgumentException("Password must be between 8 and 18 characters long (8 and 18 included)");
                 _password = value;
             }
         }

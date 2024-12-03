@@ -66,7 +66,7 @@ namespace APVRest.Service
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(UpdateSQL, conn);
                 cmd.Parameters.AddWithValue("@UID", userId);
-                cmd.Parameters.AddWithValue("@Username", updateUser.UserID);
+                cmd.Parameters.AddWithValue("@Username", updateUser.UserName);
                 cmd.Parameters.AddWithValue("@Email", updateUser.Email);
                 cmd.Parameters.AddWithValue("@Password", updateUser.Password);
                 cmd.Parameters.AddWithValue("@City", updateUser.City);

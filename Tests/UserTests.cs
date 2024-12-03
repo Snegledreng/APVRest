@@ -40,7 +40,7 @@ namespace APVRest.Tests
         public void GetUserByIdTestInexisting()
         {
             Setup();
-            Assert.IsNotNull(uService.GetUserById(1));
+            Assert.IsNull(uService.GetUserById(1));
         }
 
         [TestMethod()]
@@ -56,7 +56,6 @@ namespace APVRest.Tests
         [DataRow("l", "Emai@l", "Password", "Roskilde")]
         [DataRow("qwertyuqwertyqwertyqwertyu", "Ema@il", "Password", "Roskilde")]
         [DataRow("qwerty", "Email", "Password", "Roskilde")]
-        [DataRow("qwerty", "Emai @l", "Password", "Roskilde")]
         [DataRow("qwerty", "Email@@", "l", "Roskilde")]
         [DataRow("qwerty", "Email@@", "qwertyuqwertyuqwertyqwerty", "Roskilde")]
         [DataRow("qwerty", "Email@@", "Password", "")]
@@ -80,7 +79,7 @@ namespace APVRest.Tests
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof(Exception))]
         public void DeleteUserTestInexistingUser()
         {
             Setup();

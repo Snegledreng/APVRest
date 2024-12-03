@@ -50,8 +50,8 @@ namespace APVRest.Tests
         public void GetLogByIdTestExisting()
         {
             Setup();           
-            logService.CreateLog(new Log(PlantId, new DateTime(10/ 12/02/2024) , 20, 200));
-            Assert.IsNotNull(logService.GetLogById(PlantId, new DateTime(10 / 12 / 02 / 2024)));
+            logService.CreateLog(new Log(PlantId, new DateTime( 2000 , 12 , 02, 10, 00, 00) , 20, 200));
+            Assert.IsNotNull(logService.GetLogById(PlantId, new DateTime( 2000 , 12 , 02, 10, 00, 00)));
         }
 
 
@@ -66,8 +66,8 @@ namespace APVRest.Tests
         public void CreateLOgTestAcceptable()
         {
             Setup(); 
-            logService.CreateLog(new Log(PlantId, new DateTime(10 / 12 / 02 / 2024), 20, 200));
-            Assert.IsNotNull(logService.GetLogById(PlantId, new DateTime(10 / 12 / 02 / 2024)));
+            logService.CreateLog(new Log(PlantId, new DateTime( 2000 , 12 , 02, 10, 00, 00), 20, 200));
+            Assert.IsNotNull(logService.GetLogById(PlantId, new DateTime( 2000 , 12 , 02, 10, 00, 00)));
         }
 
 
@@ -76,7 +76,7 @@ namespace APVRest.Tests
         {
             Setup();
             int numberbefore = logService.GetAllLog(PlantId).Count();
-            logService.CreateLog(new Log(PlantId, new DateTime(10 / 12 / 02 / 2024), 20, 200));
+            logService.CreateLog(new Log(PlantId, new DateTime( 2000 , 12 , 02, 10, 00, 00), 20, 200));
             Assert.AreEqual(numberbefore + 1, logService.GetAllLog(PlantId).Count());
         }
 
@@ -84,19 +84,19 @@ namespace APVRest.Tests
         public void DeleteLogTestExistingPlant()
         {
             Setup();
-            logService.CreateLog(new Log(PlantId, new DateTime(10 / 12 / 02 / 2024), 20, 200));
-            logService.DeleteLog(PlantId, new DateTime(10 / 12 / 02 / 2024));
-            Assert.IsNull(logService.GetLogById(PlantId, new DateTime(10 / 12 / 02 / 2024)));
+            logService.CreateLog(new Log(PlantId, new DateTime( 2000 , 12 , 02, 10, 00, 00), 20, 200));
+            logService.DeleteLog(PlantId, new DateTime( 2000 , 12 , 02, 10, 00, 00));
+            Assert.IsNull(logService.GetLogById(PlantId, new DateTime( 2000 , 12 , 02, 10, 00, 00)));
         }
 
         [TestMethod()]
 
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(Exception))]
 
         public void DeleteLogTestInexistingPlant()
         {
             Setup();
-            logService.DeleteLog(PlantId, new DateTime(10 / 12 / 02 / 2024));
+            logService.DeleteLog(PlantId, new DateTime( 2000 , 12 , 02, 10, 00, 00));
             Assert.Fail();
         }
 

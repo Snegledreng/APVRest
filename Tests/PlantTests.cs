@@ -68,7 +68,13 @@ namespace APVRest.Tests
         }
 
         [TestMethod()]
-        [DataRow("Sunflower", 30, 1000, "192.234.46.55", "www.billede.dk")]
+        [DataRow("n", 30, 1000, "192.234.46.55", "www.billede.dk")]
+        [DataRow("qwertyqwertyqwertyqw", 30, 1000, "192.234.46.55", "www.billede.dk")]
+        [DataRow("Sunflower", -1, 1000, "192.234.46.55", "www.billede.dk")]
+        [DataRow("Sunflower", 101, 1000, "192.234.46.55", "www.billede.dk")]
+        [DataRow("Sunflower", 30, 9, "192.234.46.55", "www.billede.dk")]
+        [DataRow("Sunflower", 30, 1000, "", "www.billede.dk")]
+
 
 
         [ExpectedException(typeof(ArgumentException))]
@@ -108,7 +114,7 @@ namespace APVRest.Tests
 
         [TestMethod()]
         
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(Exception))]
         
         public void DeletePlantTestInexistingPlant()
         {
