@@ -5,15 +5,15 @@ namespace APVRest.IService
     public interface IUserService
     {
 
-        public void CreateUser(Plants CreatingUser);
+        public void CreateUser(User creatingUser);
 
-        public void DeleteUser(int UserId);
+        public void DeleteUser(int userId);
 
-        public void UpdateUser(Users UpdateUser, int UserId);
+        public void UpdateUser(User updateUser, int userId);
 
-        public Users GetUserById(int UserId);
+        public User GetUserById(int userId);
 
-        public void LogIn(string UName, string Password);
+        public void LogIn(string uName, string password);
 
         public void LogOut();
 
