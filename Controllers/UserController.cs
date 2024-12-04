@@ -6,17 +6,17 @@ using static APVRest.Model.UserModelDTO;
 
 namespace APVRest.Controllers
 {
-    [ApiController]
     [Route("[controller]")]
+    [ApiController]
     public class UserController : ControllerBase
     {
 
 
         public UserService userService { get; set; }
 
-        public UserController(UserService userService)
+        public UserController()
         {
-            this.userService = userService;
+            this.userService = new UserService();
         }
 
         [HttpGet("{id}")]
