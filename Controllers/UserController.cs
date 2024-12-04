@@ -12,12 +12,7 @@ namespace APVRest.Controllers
     {
 
 
-        public UserService userService { get; set; }
-
-        public UserController()
-        {
-            this.userService = new UserService();
-        }
+        public UserService userService { get; set; } = new();
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
