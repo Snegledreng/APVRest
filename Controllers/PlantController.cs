@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using APVRest.Model;
+using APVRest.Service;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,36 +10,67 @@ namespace APVRest.Controllers
     [ApiController]
     public class PlantController : ControllerBase
     {
+        public PlantService plantService { get; set; }= new ();
+
         // GET: api/<PlantController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("getall/{id}")]
+        public IActionResult GetAllForUser(int id)
         {
-            return new string[] { "value1", "value2" };
+            List<Plant> plants = plantService.GetAllPlants(id);
+            if (plants is null)
+                return NoContent();
+            return Ok(plants);
         }
 
         // GET api/<PlantController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            Plant p1 = plantService.GetPlantById(id);
+            if (p1 is null)
+            {
+                return NotFound();
+            }
+            return Ok(p1);
+
         }
 
         // POST api/<PlantController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Plant p1)
         {
-        }
-
-        // PUT api/<PlantController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+            try
+            {
+                plantService.CreatePlant(p1);
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // DELETE api/<PlantController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                plantService.DeletePlant(id);
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // PUT api/<PlantController>/5
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] Plant value)
         {
         }
+
+
     }
 }
