@@ -5,18 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace APVRest.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
 
 
-        public UserService userService { get; set; }
-
-        public UserController(UserService userService)
-        {
-            this.userService = userService;
-        }
+        public UserService userService { get; set; } = new();
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
