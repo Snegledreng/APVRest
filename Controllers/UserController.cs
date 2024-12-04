@@ -2,12 +2,11 @@ using APVRest.IService;
 using APVRest.Model;
 using APVRest.Service;
 using Microsoft.AspNetCore.Mvc;
-using static APVRest.Model.UserModelDTO;
 
 namespace APVRest.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
     public class UserController : ControllerBase
     {
 
@@ -35,11 +34,11 @@ namespace APVRest.Controllers
 
         // POST api/<UserController>
         [HttpPost]
-        public IActionResult Post([FromBody] UserDTO value)
+        public IActionResult Post([FromBody] User value)
         {
             try
             {
-                userService.CreateUser(UserDTO2User(value));
+                userService.CreateUser(value);
                 return Ok();
             }
             catch (ArgumentException)
@@ -64,11 +63,11 @@ namespace APVRest.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] UserDTO value)
+        public IActionResult Put(int id, [FromBody] User value)
         {
             try
             {
-                userService.UpdateUser(UserDTO2User(value), id);
+                userService.UpdateUser(value, id);
                 return Ok();
             }
             catch (ArgumentException ex)
