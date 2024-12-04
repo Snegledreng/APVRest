@@ -12,7 +12,7 @@ namespace APVRest.Controllers
     {
         public PlantService plantService { get; set; }= new ();
 
-        // GET: api/<PlantController>
+        // GET: api/<PlantController>/getall/5
         [HttpGet("getall/{id}")]
         public IActionResult GetAllForUser(int id)
         {
@@ -69,6 +69,16 @@ namespace APVRest.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Plant value)
         {
+            try
+            {
+                plantService.UpdatePlant(value, id);
+                return Ok();                
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
 
 

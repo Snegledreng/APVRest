@@ -1,83 +1,57 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using APVRest.IService;
+using APVRest.Model;
+using APVRest.Service;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static APVRest.Helpers.LogClusteredKey;
 
 namespace APVRest.Controllers
 {
     public class LogController : Controller
     {
-        // GET: LogController
-        public ActionResult Index()
+        public LogService logService { get; set; } = new();
+        // GET: api/<LogController>/getall/5
+        [HttpGet("getall/{id}")]
+        public IActionResult GetAllForUser(int id)
         {
-            return View();
+            List<Log> logs = logService.GetAllLog(id);
+            if (logs is null)
+                return NoContent();
+            return Ok(logs);
         }
 
         // GET: LogController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Get([FromBody] LogCK logCK)
         {
-            return View();
+                Log l1 = logService.GetLogById(logCK.id, logCK.timestamp);
+            if (l1 is null)
+                return NoContent();
+            return Ok(l1);
+
         }
 
         // GET: LogController/Create
-        public ActionResult Create()
+        public ActionResult Create([FromBody] Log l1)
         {
-            return View();
+            logService.CreateLog(l1);
+            return Ok();
         }
 
-        // POST: LogController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
-        // GET: LogController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: LogController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: LogController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: LogController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete([FromBody] LogCK logCK)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                logService.DeleteLog(logCK.id, logCK.timestamp);
+                return Ok();
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return BadRequest(ex.Message);
             }
         }
+
     }
 }
