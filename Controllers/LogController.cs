@@ -3,16 +3,20 @@ using APVRest.Model;
 using APVRest.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using static APVRest.Helpers.LogClusteredKey;
 
 namespace APVRest.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class LogController : Controller
     {
+
         public LogService logService { get; set; } = new();
         // GET: api/<LogController>/getall/5
         [HttpGet("getall/{id}")]
-        public IActionResult GetAllForUser(int id)
+        public IActionResult GetAllForPlant(int id)
         {
             List<Log> logs = logService.GetAllLog(id);
             if (logs is null)
@@ -21,9 +25,10 @@ namespace APVRest.Controllers
         }
 
         // GET: LogController/Details/5
-        public IActionResult Get([FromBody] LogCK logCK)
+        [HttpGet("{id}/{timestamp}")]
+        public IActionResult Get(int id, DateTime timestamp)
         {
-                Log l1 = logService.GetLogById(logCK.id, logCK.timestamp);
+                Log l1 = logService.GetLogById(id, timestamp);
             if (l1 is null)
                 return NoContent();
             return Ok(l1);
@@ -31,6 +36,7 @@ namespace APVRest.Controllers
         }
 
         // GET: LogController/Create
+        [HttpPost]
         public ActionResult Create([FromBody] Log l1)
         {
             logService.CreateLog(l1);
@@ -40,6 +46,7 @@ namespace APVRest.Controllers
 
 
         // GET: LogController/Delete/5
+        [HttpDelete]
         public ActionResult Delete([FromBody] LogCK logCK)
         {
             try

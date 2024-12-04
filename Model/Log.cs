@@ -37,9 +37,9 @@
         public Log(int plantID, DateTime timestamp, int humidity, int remainingWater)
         {
             Plantid = plantID;
-            this._timestamp = timestamp;
-            this._humidity = humidity;
-            this._remainingWater = remainingWater;
+            Timestamp = timestamp;
+            Humidity = humidity;
+            Remainingwater = remainingWater;
         }
     }
 }
