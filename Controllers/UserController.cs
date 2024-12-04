@@ -16,14 +16,13 @@ namespace APVRest.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            try
+            User u1 = userService.GetUserById(id);
+            if (u1 is null)
             {
-                return Ok(userService.GetUserById(id));
+                return NotFound();
             }
-            catch (ArgumentException ex) 
-            {
-                return NotFound(ex);
-            }
+            return Ok(u1);
+
         }
 
 
@@ -51,7 +50,7 @@ namespace APVRest.Controllers
                 userService.DeleteUser(id);
                 return Ok();
             }
-            catch(ArgumentException ex)
+            catch (ArgumentException ex)
             {
                 return NotFound(ex);
             }
