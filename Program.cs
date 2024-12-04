@@ -1,4 +1,7 @@
 
+using APVRest.IService;
+using APVRest.Service;
+
 namespace APVRest
 {
     public class Program
@@ -13,6 +16,10 @@ namespace APVRest
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddSingleton<IUserService>(new UserService());
+            builder.Services.AddSingleton<IPlantService>(new PlantService());
+            builder.Services.AddSingleton<ILogService>(new LogService());
 
             var app = builder.Build();
 
