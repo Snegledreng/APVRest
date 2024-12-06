@@ -13,7 +13,7 @@ namespace APVRest.IService
 
         public User GetUserById(int userId);
 
-        public void LogIn(string uName, string password);
+        public int LogIn(string uName, string password);
 
         public void LogOut();
 

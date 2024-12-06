@@ -98,12 +98,27 @@ namespace APVRest.Tests
             Assert.IsNotNull(uService.GetUserById(id));
         }
 
-        public void UpdateUserTestInexistingUser()
+
+
+        [TestMethod()]
+        public void LoginUserTestAcceptable()
         {
             Setup();
-            uService.UpdateUser(new User(2, "UName", "Email@", "Password", "Roskilde"), 12);
-            Assert.IsNull(uService.GetUserById(2));
+            uService.CreateUser(new User(1, "UName", "Email@", "Password", "Roskilde"));
+            Assert.IsNotNull(uService.LogIn("UName", "Password"));
         }
+
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException))]
+
+        public void LoginUserTestUnacceptable()
+        {
+            Setup();
+            uService.LogIn("UName", "r");
+            Assert.Fail();
+        }
+
 
 
 
