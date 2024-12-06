@@ -70,7 +70,7 @@ namespace APVRest.Controllers
             }
         }
 
-        [HttpGet("{uName}{password}")]
+        [HttpGet("{uName}/{password}")]
         public IActionResult Get(string uName, string password)
         {
             try
