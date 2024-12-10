@@ -20,6 +20,14 @@ namespace APVRest
             builder.Services.AddSingleton<IUserService>(new UserService());
             builder.Services.AddSingleton<IPlantService>(new PlantService());
             builder.Services.AddSingleton<ILogService>(new LogService());
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAny",
+                    builder => builder.AllowAnyOrigin().
+                        AllowAnyMethod().
+                        AllowAnyHeader()
+                );
+            });
 
             var app = builder.Build();
 
@@ -31,7 +39,7 @@ namespace APVRest
             }
 
             app.UseAuthorization();
-
+            app.UseCors("AllowAny");
 
             app.MapControllers();
 
