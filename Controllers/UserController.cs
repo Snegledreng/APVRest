@@ -70,5 +70,20 @@ namespace APVRest.Controllers
             }
         }
 
+        [HttpGet("{uName}/{password}")]
+        public IActionResult Get(string uName, string password)
+        {
+            try
+            {
+                int UID = userService.LogIn(uName, password);
+                return Ok(UID);
+            }
+            catch(ArgumentException ex)
+            {
+                return BadRequest(ex);
+            }
+
+        }
+
     }
 }

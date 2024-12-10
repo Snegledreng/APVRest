@@ -76,16 +76,32 @@ namespace APVRest.Service
             }
         }
 
+        public int LogIn(string uName, string password)
+        {
+            string CorrectLogin = "SELECT Userid FROM DBO.[USER] WHERE USERNAME = @Uname AND PASSWORD = @Password";
+
+            using (SqlConnection conn = new SqlConnection(Service.Secret.TestConnectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(CorrectLogin, conn);
+                cmd.Parameters.AddWithValue("@Uname", uName);
+                cmd.Parameters.AddWithValue("@Password", password);
+
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                    return reader.GetInt32("UserID");
+            }
+            throw new ArgumentException("The password or the username is wrong");
+
+        }
 
         public int GetHttp()
         {
             throw new NotImplementedException();
         }
 
-        public void LogIn(string uName, string password)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public void LogOut()
         {
