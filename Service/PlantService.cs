@@ -45,7 +45,7 @@ namespace APVRest.Service
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    List<Log> logliste = _logService.GetAllLog(userId);
+                    List<Log> logliste = _logService.GetAllLog(reader.GetInt32(0));
 
                     Plant p1 = new Plant(reader.GetString("Name"), reader.GetInt32("DesiredHumidity"), reader.GetInt32("WaterTankVolume"), reader.GetString("IPAddress"), reader.GetString("PictureUrl"),logliste, reader.GetInt32("UserId"), reader.GetInt32("PlantID"));
                     
