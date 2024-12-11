@@ -26,7 +26,7 @@ namespace APVRest.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            Plant p1 = plantService.GetPlantById(id);
+            Plant? p1 = plantService.GetPlantById(id);
             if (p1 is null)
             {
                 return NotFound();

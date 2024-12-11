@@ -8,7 +8,7 @@ namespace APVRest.Service
     public class PlantService : IPlantService
     {
         private LogService _logService = new LogService();
-        public Plant GetPlantById(int plantId)
+        public Plant? GetPlantById(int plantId)
         {
             string SelectByIdSQL = "SELECT * FROM PLANT WHERE PLANTID = @PlantId";
 
